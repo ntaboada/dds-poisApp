@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 
 import dds.poi.model.POI;
 import dds.poi.model.POISource;
+import dds.poi.provider.repository.POIRepository;
 
 public class POIManager {
 
@@ -19,6 +20,8 @@ public class POIManager {
 		}
 		return _selfInstance;
 	}
+	
+	
 
 	public List<POI> buscarPOIs(String valor) {
 		List<POI> pois = new ArrayList<POI>();
@@ -41,6 +44,12 @@ public class POIManager {
 
 	public void cleanProviders() {
 		this.poiSources.clear();
+	}
+
+
+
+	public POI searchById(long idPOI) {
+		return POIRepository.getInstance().searchById(idPOI);
 	}
 
 }

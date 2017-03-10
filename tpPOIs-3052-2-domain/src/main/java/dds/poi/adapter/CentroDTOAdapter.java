@@ -33,7 +33,11 @@ public class CentroDTOAdapter implements Adapter<List<CentroDTO>, List<POI>> {
 		
 		CGP cgp = new CGPBuilder().servicios(listServicios).build();
 		
-		POI cgpPoi = new POIBuilder().direccionPrincipal(direccionCGP).cgp(cgp).build();
+		POI cgpPoi = new POIBuilder().imagen(centroDto.getIcono()).
+				direccionPrincipal(direccionCGP).cgp(cgp).
+				direccionSecundaria(centroDto.getDomicilioSecundario()).
+				nombre(centroDto.getNombre())
+				.coordenadas(centroDto.getCoordenadas()).build();
 		
 		return cgpPoi;
 	}

@@ -1,0 +1,77 @@
+<body>
+<div class="container" ng-controller="BusquedaController as busquedaCtrl">
+	<div class="divider"></div>
+	<div class="row">
+		<div class="container">
+			<form name="addFilter" class="col-xs-4">
+				<div class="row">
+					<h4 class="title"><i class="glyphicon glyphicon-search"></i>    Criterio Busqueda</h4>
+				</div>
+				<div class="row">
+					<input  placeholder="Filtro"  name="userInputFilter" type="text" id="userInputFilter" class="form-control" ng-model="busquedaCtrl.inputFilter" not-in-list="busquedaCtrl.filters.filtersList">
+				</div>
+				<div class="row">
+					<div class="btn-group btn-group-justified" role="group" aria-label="...">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-primary" ng-click="busquedaCtrl.pushFilter()">
+								<span class="fa fa-plus-square-o fa-lg" ></span>
+								Agregar
+							</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="col-xs-1">
+			</div>
+			<div class="col-xs-7">
+				<div class="row"></div>
+				<br><br>
+				<div class="row flex-items-xs-center option-filter">
+					<div class="col-xs-3">
+						<span ng-click="busquedaCtrl.removeFilter($index)" class="label label-primary" ng-repeat="filter in busquedaCtrl.filters.filtersList">{{filter}}</span>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-xs-5">
+						<div ng-show="addFilter.userInputFilter.$error.valueInList" class="alert alert-danger" role="alert">
+							No puede ingresar filtros repetidos
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="line-divider"></div>
+	</div>
+	<div class="row">
+		<div class="resultados">
+				<h4 class="title" id="resultadosTitle"><span class="glyphicon glyphicon-list-alt"></span>   Resultados</h4>
+			<br>
+			<table class="table table-bordered table-hover" id="resultadosTable">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nombre</th>
+					<th>Direccion</th>
+					<th>Favorito</th>
+					<th>Detalles</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="poi in busquedaCtrl.results">
+					<th>{{poi.identificador}}</th>
+					<th>{{poi.nombre}}</th>
+					<th>{{poi.direccion}}</th>
+					<th><i class="glyphicon glyphicon-star" ng-if="poi.favoritePOI"></i><i class="glyphicon glyphicon-remove" ng-show="!poi.favoritePOI"></i> </th>
+					<th><a ui-sref="main.poi_detail({ id : poi.identificador, name : poi.nombre })"><i class="fa fa-eye"></i></a></th>
+				</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary" id="button2" type="button" ng-disabled="!busquedaCtrl.canExecuteSearch()" ng-click="busquedaCtrl.executeSearch()">
+				<span class="fa fa-search fa-lg"  aria-hidden="true"></span>  Buscar
+			</button>
+		</div>
+	</div>
+</div>

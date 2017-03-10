@@ -18,7 +18,7 @@ public class AsyncProcessResultBuilder extends Builder<AsyncProcessResult>{
 		return this;
 	}
 	
-	public AsyncProcessResultBuilder userId(int userId) {
+	public AsyncProcessResultBuilder userId(Long userId) {
 		this.asyncProcessResult.setUserId(userId);
 		return this;
 	}

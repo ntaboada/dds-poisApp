@@ -7,7 +7,7 @@ public class AsyncProcessResult {
 	private DateTime initTime;
 	private DateTime endTime;
 	private String process;
-	private int userId;
+	private Long userId;
 	private boolean success;
 	private String errorMessage;
 	
@@ -29,10 +29,10 @@ public class AsyncProcessResult {
 	public void setProcess(String process) {
 		this.process = process;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public boolean isSuccess() {

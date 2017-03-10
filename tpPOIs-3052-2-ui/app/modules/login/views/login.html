@@ -1,0 +1,31 @@
+<div class="view hm-black-strong">
+    <div class="full-bg-img flex-center">
+      <div class="card animated fadeInUp white">
+        <div class="card-header elegant-color white-text">
+          Bienvenido
+        </div>
+        <div class="card-block card-block-padding">
+          <form>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form">
+                      <input type="text" class="form-control" ng-model="loginCtrl.userName">
+                      <label for="form9">Usuario</label>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="md-form">
+                      <input type="password" class="form-control" ng-model="loginCtrl.userPassword">
+                      <label for="form2">Contrase&ntilde;a</label>
+                  </div>
+                </div>
+            </div>
+          </form>
+
+            <a ng-click="loginCtrl.login()" class="btn btn-elegant center-block">Ingresar</a>
+        </div>
+    </div>
+</div>

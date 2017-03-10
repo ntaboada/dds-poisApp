@@ -1,6 +1,7 @@
 package dds.poi.test;
 
-import dds.poi.test.stub.StubInactiveService;
+import dds.poi.stub.StubInactiveService;
+
 import org.junit.Assert;
 import org.junit.Test;
 

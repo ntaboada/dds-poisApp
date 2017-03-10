@@ -4,10 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import org.joda.time.DateTime;
 
+@Entity
 public class ServicioCGP extends Servicio {
-
+	
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Rango> horarioDeAtencion = new ArrayList<Rango>();
 
 	public List<Rango> getHorarioDeAtencion() {

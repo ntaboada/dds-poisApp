@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 
+@Entity
 public class ServicioBanco extends Servicio {
 
 	private static final ArrayList<Integer> diasDisponibles = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));

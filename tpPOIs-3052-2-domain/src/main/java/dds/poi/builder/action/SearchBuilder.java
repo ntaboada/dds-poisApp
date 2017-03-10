@@ -23,7 +23,7 @@ public class SearchBuilder extends Builder<Search> {
 		return this;
 	}
 	
-	public SearchBuilder idUsuario(int idUsuario) {
+	public SearchBuilder idUsuario(Long idUsuario) {
 		this.simpleSearch.setIdUsuario(idUsuario);
 		return this;
 	}

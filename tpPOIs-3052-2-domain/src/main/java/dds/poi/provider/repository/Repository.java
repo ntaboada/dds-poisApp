@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface Repository<T> {
 
-	public boolean create(T obj);
+	public void create(T obj);
 	
-	public boolean delete(T obj);
+	public void delete(T obj);
 	
-	public boolean deleteAll();
+	public void deleteAll();
 	
-	public boolean update(T obj);
+	public void update(T obj);
 	
-	public T searchById(int id);
+	public T searchById(Object id);
 	
-	public List<T> search(String valor);
+	public List<T> search(T entity);
 	
 	public List<T> findAll();
 	

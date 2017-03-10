@@ -2,15 +2,15 @@ package dds.poi.test;
 
 import org.junit.Before;
 
+import dds.poi.builder.TerminalBuilder;
+import dds.poi.builder.UserBuilder;
+import dds.poi.builder.UserProfileBuilder;
 import dds.poi.manager.UserManager;
 import dds.poi.model.search.Terminal;
 import dds.poi.model.search.user.User;
 import dds.poi.model.search.user.UserActions;
 import dds.poi.servicelocator.ServiceLocator;
-import dds.poi.test.builder.TerminalBuilder;
-import dds.poi.test.builder.UserBuilder;
-import dds.poi.test.builder.UserProfileBuilder;
-import dds.poi.test.stub.StubMailSender;
+import dds.poi.stub.StubMailSender;
 
 public class InitTestsEntrega3 extends Inicializar {
 
@@ -29,12 +29,12 @@ public class InitTestsEntrega3 extends Inicializar {
 
 		this.terminal = new TerminalBuilder().id(1).build();
 
-		this.adminUser = new UserBuilder().id(1).mail("admin1@dds.com").password("asd123")
+		this.adminUser = new UserBuilder().id(1l).mail("admin1@dds.com").password("asd123")
 				.profileType(new UserProfileBuilder().action(UserActions.ADMIN_ACTIONS).build()).build();
-		this.consultUser = new UserBuilder().id(2).mail("mail2@dds.com").password("asd123")
+		this.consultUser = new UserBuilder().id(2l).mail("mail2@dds.com").password("asd123")
 				.profileType(new UserProfileBuilder().action(UserActions.SEARCH).action(UserActions.GENERATE_REPORT_BY_DATE).action(UserActions.GENERATE_REPORT_BY_TERMINAL)
 						.action(UserActions.GENERATE_REPORT_TOTALS_TERMINAL) .build()).build();
-		this.invalidUser = new UserBuilder().id(3).mail("cualka").password("asd123")
+		this.invalidUser = new UserBuilder().id(3l).mail("cualka").password("asd123")
 				.profileType(new UserProfileBuilder().action(UserActions.GENERATE_REPORT_BY_DATE).build()).build();
 
 		UserManager.getInstance().addUser(this.adminUser);

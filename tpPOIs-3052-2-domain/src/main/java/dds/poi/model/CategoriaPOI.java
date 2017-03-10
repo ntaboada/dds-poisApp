@@ -1,23 +1,35 @@
 package dds.poi.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public interface CategoriaPOI {
-
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class CategoriaPOI {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	//Kilometros
 	public static final double MINIMA_DISTANCIA_PARA_CERCANIA_GENERAL = 0.5;
 	
-	boolean coincideConBusqueda(String busqueda);
+	abstract boolean coincideConBusqueda(String busqueda);
 
-	boolean estaDisponible(DateTime momento);
+	abstract boolean estaDisponible(DateTime momento);
 	
-	default boolean estaDisponible(DateTime momento, String nombreServicio) {
+	public boolean estaDisponible(DateTime momento, String nombreServicio) {
 		return estaDisponible(momento);
 	};
 	
-	default boolean estaCerca(Point coordenadasOrigen, Point coordenadasDestino) {
+	public boolean estaCerca(Point coordenadasOrigen, Point coordenadasDestino) {
 		return coordenadasOrigen.distance(coordenadasDestino) <= MINIMA_DISTANCIA_PARA_CERCANIA_GENERAL;
 	}
-	
+		
 }

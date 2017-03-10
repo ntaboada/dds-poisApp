@@ -1,12 +1,29 @@
 package dds.poi.model;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 import org.joda.time.DateTime;
 
+import dds.poi.model.converter.DateTimeConverter;
 import dds.poi.utils.DateUtils;
 
+@Entity
 public class Rango {
 
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column
+	@Convert(converter = DateTimeConverter.class)
 	private DateTime dateTimeFrom;
+	
+	@Column
+	@Convert(converter = DateTimeConverter.class)
 	private DateTime dateTimeTo;
 
 	public Rango() {
@@ -57,5 +74,13 @@ public class Rango {
 
 	public boolean incluyeElMomento(DateTime moment) {
 		return DateUtils.momentIsInInterval(moment, this);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

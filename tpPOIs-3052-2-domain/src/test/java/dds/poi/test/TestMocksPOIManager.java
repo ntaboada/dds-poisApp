@@ -14,9 +14,9 @@ import dds.poi.adapter.CentroDTOAdapter;
 import dds.poi.builder.POISourceBuilder;
 import dds.poi.manager.POIManager;
 import dds.poi.model.POISource;
+import dds.poi.stub.StubBancoProvider;
+import dds.poi.stub.StubCGPProvider;
 import dds.poi.test.matchers.ValorQueryMatcher;
-import dds.poi.test.stub.StubBancoProvider;
-import dds.poi.test.stub.StubCGPProvider;
 
 public class TestMocksPOIManager {
 

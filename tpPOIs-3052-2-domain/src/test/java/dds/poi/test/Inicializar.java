@@ -1,6 +1,9 @@
 package dds.poi.test;
 
-import dds.poi.test.stub.StubInactiveService;
+import dds.poi.stub.StubBancoProvider;
+import dds.poi.stub.StubCGPProvider;
+import dds.poi.stub.StubInactiveService;
+
 import org.junit.After;
 import org.junit.Before;
 import org.uqbar.geodds.Point;
@@ -20,8 +23,6 @@ import dds.poi.model.ParadaColectivo;
 import dds.poi.model.Rango;
 import dds.poi.model.Rubro;
 import dds.poi.provider.repository.POIRepository;
-import dds.poi.test.stub.StubBancoProvider;
-import dds.poi.test.stub.StubCGPProvider;
 
 public class Inicializar {
 
@@ -54,7 +55,7 @@ public class Inicializar {
 		
 		this.coordenadaParada = new Point(-34.646442, -58.498383);
 		this.parada114 = new POIBuilder().coordenadas(coordenadaParada).nombre("Parada UTN Campus|Linea 114").direccionPrincipal("Mozart 2300")
-				.direccionSecundaria("Saraza 1200").identificador(1).paradaColectivo(paradaDeColectivo)
+				.direccionSecundaria("Saraza 1200").identificador(1l).paradaColectivo(paradaDeColectivo)
 				.etiqueta("Campus").etiqueta("Bondi").etiqueta("Colectivo").build();
 		
 		// Almacen DonManolo
@@ -71,7 +72,7 @@ public class Inicializar {
 		
 		this.coordenadaAlmacen = new Point(-34.642536, -58.504869);
 
-		this.almacenDonManolo = new POIBuilder().identificador(2).coordenadas(coordenadaAlmacen).nombre("Almacén Don Manolo")
+		this.almacenDonManolo = new POIBuilder().identificador(2l).coordenadas(coordenadaAlmacen).nombre("Almacén Don Manolo")
 				.direccionPrincipal("Pichincha 2342").direccionSecundaria("").localComercial(localComercialAlmacen)
 				.etiqueta("Fiambres").etiqueta("Despensa").etiqueta("Don Manolo").etiqueta("Clásico").build();
 

@@ -17,6 +17,11 @@ public class POIBuilder extends Builder<POI>{
 		return this;
 	}
 	
+	public POIBuilder imagen(String icono) {
+		this.poi.setImage(icono);
+		return this;
+	}
+	
 	public POIBuilder direccionPrincipal(String direccion) {
 		this.poi.setDireccionPrincipal(direccion);
 		return this;
@@ -27,7 +32,7 @@ public class POIBuilder extends Builder<POI>{
 		return this;
 	}
 	
-	public POIBuilder identificador(int id) {
+	public POIBuilder identificador(Long id) {
 		this.poi.setIdentificador(id);
 		return this;
 	}

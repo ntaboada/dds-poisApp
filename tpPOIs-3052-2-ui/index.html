@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+	<base href="/">
+  <title>POIs</title>
+
+    <!-- Font Awesome -->
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Ng-Tags-->
+    <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.css">
+    <!-- Material Design Bootstrap -->
+    <link href="bower_components/MDBootstrap/css/mdb.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Your custom styles (optional) -->
+    <link href="app/css/style.css" rel="stylesheet" type="text/css">
+    <link href="app/css/busquedaWindow.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/jquery-bar-rating/dist/themes/fontawesome-stars.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body ng-app="pois-app">
+<div ui-view="layout"></div>
+<!-- SCRIPTS -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="bower_components/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+
+<script type="text/javascript" src="bower_components/MDBootstrap/js/mdb.min.js"></script>
+<script type="text/javascript" src="bower_components/MDBootstrap/js/tether.min.js"></script>
+
+<script src="app/app.js"></script>
+<script src="app/domain/objects/POI.js"></script>
+<script src="app/modules/validators/validatorSearchWindow.js"></script>
+<script src="app/domain/objects/Filter.js"></script>
+<script src="app/domain/objects/ResultPOI.js"></script>
+<script src="app/modules/validators/notInList.directive.js"></script>
+
+<script src="app/services/repoPois.js"></script>
+<script src="app/services/poiService.js"></script>
+<script src="app/services/loginService.js"></script>
+<script src="app/services/searchService.js"></script>
+<script src="app/modules/login/login.js"></script>
+<script src="app/modules/login/controllers/loginController.js"></script>
+<script src="app/modules/pois/pois.js"></script>
+<script src="app/modules/pois/controllers/busquedaController.js"></script>
+<script src="app/modules/pois/controllers/poiDetailController.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwlem6qSwjvqv348yBeWuOsVGly0uIuE8&libraries=places&sensor=false"></script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div class="services-container">
+  <table class="card table table-bordered table-hover">
+    <thead class="info-color white-text">
+      <tr>
+        <th>Servicio</th>
+        <th>Horarios de Atención</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="service in poiCtrl.poi.categoriaPOI.prototype.servicios">
+        <td>{{ service.nombreServicio }}</td>
+        <td>
+            <p ng-repeat="rango in service.rangosDisponibilidad">
+              {{ rango.rangoDeAtencion }}
+            </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

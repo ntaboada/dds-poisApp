@@ -1,0 +1,88 @@
+/* YOUR CUSTOM STYLES */
+html,
+body,
+.view {
+    height: 100%;
+}
+
+.flex-center {
+    color: #fff;
+}
+
+.view {
+    background: url("../img/background_login.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.card {
+  border-radius: 5px;
+  min-width: 400px;
+  margin-bottom: 0em;
+}
+
+.card-header {
+  font-size: 2em;
+  text-align: center;
+}
+
+.no-radius {
+  border-radius: 0px !important;
+}
+
+.icon {
+  font-size: 3em;
+}
+
+.info-poi-container {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.poi-general-information {
+  border-radius: 5px;
+  margin: 2em auto;
+  width: 80%;
+}
+
+.poi-icon {
+  margin-top: 0.5em;
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+  float: left;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  width: 20%;
+  text-align: center;
+}
+
+.poi-details {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: inline-block;
+  float: right;
+  height: 100%;
+  width: 80%;
+  margin-bottom: 1em;
+}
+
+.poi-details h3 {
+  margin-top: 0.5em;
+}
+
+.services-container {
+  margin: 1em;
+}
+
+.map-poi-container {
+  display: block;
+  float:right;
+  width: 50%;
+  height: 100%;
+}

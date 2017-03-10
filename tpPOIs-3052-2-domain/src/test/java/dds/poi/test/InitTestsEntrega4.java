@@ -1,17 +1,19 @@
 package dds.poi.test;
 
 import static org.mockito.Mockito.mock;
-
 import dds.poi.builder.LocalComercialBuilder;
 import dds.poi.builder.POIBuilder;
 import dds.poi.builder.RangoBuilder;
 import dds.poi.builder.RubroBuilder;
+import dds.poi.builder.TerminalBuilder;
+import dds.poi.builder.UserBuilder;
+import dds.poi.builder.UserProfileBuilder;
 import dds.poi.manager.POIManager;
 import dds.poi.model.*;
 import dds.poi.provider.repository.POIRepository;
 import dds.poi.servicelocator.service.FileUpdateService;
 import dds.poi.servicelocator.service.LocalComerciaFile;
-import dds.poi.test.stub.StubInactiveService;
+
 import org.junit.Before;
 
 import dds.poi.manager.UserManager;
@@ -20,10 +22,9 @@ import dds.poi.model.search.user.User;
 import dds.poi.model.search.user.UserActions;
 import dds.poi.servicelocator.ServiceLocator;
 import dds.poi.servicelocator.service.MailSender;
-import dds.poi.test.builder.TerminalBuilder;
-import dds.poi.test.builder.UserBuilder;
-import dds.poi.test.builder.UserProfileBuilder;
-import dds.poi.test.stub.StubMailSender;
+import dds.poi.stub.StubInactiveService;
+import dds.poi.stub.StubMailSender;
+
 import org.uqbar.geodds.Point;
 
 public class InitTestsEntrega4 {
@@ -55,7 +56,7 @@ public class InitTestsEntrega4 {
 		ServiceLocator.getInstance().setWeekFileUpdateService(this.fileUpdateService);
 		this.terminal = new TerminalBuilder().id(1).build();
 		
-		this.adminUser = new UserBuilder().id(1).mail("admin1@dds.com").password("asd123")
+		this.adminUser = new UserBuilder().id(1l).mail("admin1@dds.com").password("asd123")
 				.profileType(new UserProfileBuilder().action(UserActions.ADMIN_ACTIONS).build()).build();
 		
 		UserManager.getInstance().addUser(this.adminUser);
@@ -77,7 +78,7 @@ public class InitTestsEntrega4 {
 
 		this.coordenadaAlmacen = new Point(-34.642536, -58.504869);
 
-		this.almacenDonManolo = new POIBuilder().identificador(2).coordenadas(coordenadaAlmacen).nombre("Almacén Don Manolo")
+		this.almacenDonManolo = new POIBuilder().identificador(2l).coordenadas(coordenadaAlmacen).nombre("Almacén Don Manolo")
 				.direccionPrincipal("Pichincha 2342").direccionSecundaria("").localComercial(localComercialAlmacen)
 				.etiqueta("Fiambres").etiqueta("Despensa").etiqueta("Don Manolo").etiqueta("Clásico").build();
 

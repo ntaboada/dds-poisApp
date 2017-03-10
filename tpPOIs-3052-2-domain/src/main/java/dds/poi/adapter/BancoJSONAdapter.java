@@ -38,6 +38,9 @@ public class BancoJSONAdapter implements Adapter<String, List<POI>> {
 
 					String gerente = decorator.getString("gerente");
 					String sucursal = decorator.getString("sucursal");
+					String icono = decorator.getString("icono");
+					String direccionPrincipal = decorator.getString("direccionP");
+					String direccionSecundaria = decorator.getString("direccionS");
 
 					List<Servicio> serviciosBanco = new ArrayList<Servicio>();
 					JsonArray serviciosArray = decorator.getJsonArray("servicios");
@@ -51,7 +54,9 @@ public class BancoJSONAdapter implements Adapter<String, List<POI>> {
 					}
 					
 					Banco categoriaBanco = new BancoBuilder().gerente(gerente).sucursal(sucursal).servicios(serviciosBanco).build();
-					POI nuevoBanco = new POIBuilder().nombre(nombre).coordenadas(coordenadas).banco(categoriaBanco).build();	
+					POI nuevoBanco = new POIBuilder().imagen(icono).nombre(nombre)
+							.direccionPrincipal(direccionPrincipal)
+							.direccionSecundaria(direccionSecundaria).coordenadas(coordenadas).banco(categoriaBanco).build();	
 					bancos.add(nuevoBanco);
 				}
 			}

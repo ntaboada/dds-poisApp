@@ -1,13 +1,18 @@
 package dds.poi.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class ParadaColectivo implements CategoriaPOI {
+@Entity
+public class ParadaColectivo extends CategoriaPOI {
 
 	//Kilometros
 	private static final double RADIO_DE_CERCANIA = 0.1;
 	
+	@Column(length=50)
 	private String lineaColectivo;
 
 	@Override

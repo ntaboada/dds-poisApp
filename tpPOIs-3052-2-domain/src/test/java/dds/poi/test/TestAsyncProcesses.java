@@ -8,6 +8,9 @@ import dds.poi.action.asyncprocess.AddUserActionsProcess;
 import dds.poi.action.asyncprocess.DeletePOIsProcess;
 import dds.poi.action.asyncprocess.MultipleAsyncProcesses;
 import dds.poi.action.asyncprocess.UpdateLocalesComercialesProcess;
+import dds.poi.builder.NewActionsBuilder;
+import dds.poi.builder.UserBuilder;
+import dds.poi.builder.UserProfileBuilder;
 import dds.poi.exception.PermissionException;
 import dds.poi.history.AsyncProcessResultHistory;
 import dds.poi.manager.UserManager;
@@ -16,10 +19,7 @@ import dds.poi.model.search.user.User;
 import dds.poi.model.search.user.UserActions;
 import dds.poi.provider.repository.POIRepository;
 import dds.poi.servicelocator.ServiceLocator;
-import dds.poi.test.builder.NewActionsBuilder;
-import dds.poi.test.builder.UserBuilder;
-import dds.poi.test.builder.UserProfileBuilder;
-import dds.poi.test.stub.StubInactiveService;
+import dds.poi.stub.StubInactiveService;
 
 public class TestAsyncProcesses extends InitTestsEntrega4 {
 
@@ -44,7 +44,7 @@ public class TestAsyncProcesses extends InitTestsEntrega4 {
 
 		POIRepository.getInstance().create(this.almacenDonManolo);
 
-		this.consultUser = new UserBuilder().id(2).mail("mail2@dds.com").password("asd123")
+		this.consultUser = new UserBuilder().id(2l).mail("mail2@dds.com").password("asd123")
 				.profileType(new UserProfileBuilder().action(UserActions.SEARCH).action(UserActions.GENERATE_REPORT_BY_DATE).action(UserActions.GENERATE_REPORT_BY_TERMINAL)
 						.action(UserActions.GENERATE_REPORT_TOTALS_TERMINAL) .build()).build();
 		

@@ -13,10 +13,10 @@ import dds.poi.action.asyncprocess.AddUserActionsProcess;
 import dds.poi.action.asyncprocess.DeletePOIsProcess;
 import dds.poi.action.asyncprocess.MultipleAsyncProcesses;
 import dds.poi.action.asyncprocess.UpdateLocalesComercialesProcess;
+import dds.poi.builder.NewActionsBuilder;
 import dds.poi.history.AsyncProcessResultHistory;
 import dds.poi.model.asyncprocess.NewActions;
 import dds.poi.model.search.user.UserActions;
-import dds.poi.test.builder.NewActionsBuilder;
 
 public class TestManejoDeResultados extends InitTestsEntrega4 {
 	private DeletePOIsProcess deletePOIsProcess;

@@ -14,7 +14,7 @@ import org.junit.Test;
 import dds.poi.history.SearchsHistory;
 import dds.poi.servicelocator.ServiceLocator;
 import dds.poi.servicelocator.service.MailSender;
-import dds.poi.test.stub.StubMailSender;
+import dds.poi.stub.StubMailSender;
 
 @SuppressWarnings("unchecked")
 public class TestBusquedasObserver extends InitTestsEntrega3 {

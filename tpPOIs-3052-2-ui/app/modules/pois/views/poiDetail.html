@@ -1,0 +1,63 @@
+<div class="card info-poi-container">
+
+    <div class="card-header no-radius elegant-color white-text">
+        <a ui-sref="main.busqueda"><i class="fa fa-chevron-left icon-back" aria-hidden="true"></i></a>
+        <p>{{ poiCtrl.poi.categoriaTitulo() }}</p>
+    </div>
+
+    <span class="favorite-poi" ng-if="poiCtrl.poi.esFavorito"><i class="fa fa-star"></i> ¡POI Favorito!</span>
+
+    <div class="poi-general-information">
+        <div class="poi-icon">
+            <i class="fa {{ poiCtrl.poi.imagen }} icon"></i>
+        </div>
+        <div class="poi-details">
+
+            <div ng-repeat="propiedad in poiCtrl.poi.properties">
+                <h3>{{ propiedad.name }}</h3> {{ propiedad.value }}
+            </div>
+
+            <span class="calification">Calificación general: {{ poiCtrl.poi.calificacionGeneral }}</span>
+        </div>
+
+        <div ui-view="servicios-poi">
+            <!-- Tabla de Servicios -->
+        </div>
+    </div>
+
+    <div class="card calification-container">
+        <p>Tu opini&oacute;n</p>
+        <select class="stars" id="stars" ng-model="poiCtrl.userQualification">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        </select>
+        <textarea ng-model="poiCtrl.userReview" class="form-control" rows="4" cols="50" placeholder="Cuéntale a los demás qué opinas sobre este POI. ¿Lo recomendarías? ¿Por qué?"></textarea>
+        <button type="button" class="btn btn-success" ng-click="poiCtrl.sendReview()">Enviar comentario</button>
+        <button ng-show="!poiCtrl.poi.esFavorito" type="button" class="btn btn-secondary" ng-click="poiCtrl.saveFavoritePOI()">Marcar como favorito</button>
+        <button ng-show="poiCtrl.poi.esFavorito" type="button" class="btn btn-secondary" ng-click="poiCtrl.removeFavoritePOI()">Desmarcar como favorito</button>
+    </div>
+
+    <div class="card reviews-container">
+        <p class="titleReview">Reviews</p>
+        <div class="review" ng-show="poiCtrl.poi.reviews.length>0" ng-repeat="review in poiCtrl.poi.reviews">
+            <span>{{ review.userName }} - {{ review.calificacion }} estrellas</span>
+
+            <p class="comment">{{ review.comment }}</p>
+            <div class="divider"></div>
+        </div>
+        <div ng-show="!poiCtrl.poi.reviews || poiCtrl.poi.reviews.length == 0" class="review">
+            <p class="comment">Aún no hay reviews</p>
+        </div>
+    </div>
+
+</div>
+<div class="map-poi-container" id="map">
+    <img class="flex-center" src="app/img/map.png">
+</div>
+
+<script type="text/javascript">
+   $(function() {
+      $('#stars').barrating({
+        theme: 'fontawesome-stars'
+      });
+   });
+</script>

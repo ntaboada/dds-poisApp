@@ -4,12 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
-public class LocalComercial implements CategoriaPOI {
-
+@Entity
+public class LocalComercial extends CategoriaPOI {
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Rubro rubro;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+	@Fetch(FetchMode.SELECT)
 	private List<Rango> rangosDeDisponibilidad;
 
 	public LocalComercial() {
@@ -51,5 +64,5 @@ public class LocalComercial implements CategoriaPOI {
 	public void addRango(Rango rango) {
 		this.rangosDeDisponibilidad.add(rango);
 	}
-
+	
 }

@@ -22,7 +22,7 @@ public class TestPOIRepository extends Inicializar {
 		ParadaColectivo parada = new ParadaColectivoBuilder().lineaColectivo("180").build();
 		
 		this.poiConflictivoQueVaAHacerFallarLosTests = new POIBuilder().coordenadas(new Point(0, 0)).paradaColectivo(parada)
-				.direccionPrincipal("Avenida Alberdi 3400").identificador(1092).nombre("Parada del 180").build();
+				.direccionPrincipal("Avenida Alberdi 3400").identificador(1092l).nombre("Parada del 180").build();
 	}
 	
 	/*Test Metodos de Repository*/
@@ -33,7 +33,7 @@ public class TestPOIRepository extends Inicializar {
 		ParadaColectivo parada = new ParadaColectivoBuilder().lineaColectivo("180").build();
 		
 		POI newPOI = new POIBuilder().coordenadas(new Point(0, 0)).paradaColectivo(parada)
-				.direccionPrincipal("Avenida Alberdi 3400").identificador(10).nombre("Parada del 180").build();
+				.direccionPrincipal("Avenida Alberdi 3400").identificador(10l).nombre("Parada del 180").build();
 		
 		POIRepository.getInstance().create(newPOI);
 		
@@ -44,31 +44,23 @@ public class TestPOIRepository extends Inicializar {
 	public void testActualizarPOIOk() {
 		this.almacenDonManolo.setDireccionPrincipal("Cambio la direccion del Almacen Don Manolo");
 		
-		boolean poiUpdated = POIRepository.getInstance().update(this.almacenDonManolo);
-		
-		Assert.assertTrue(poiUpdated);
+		POIRepository.getInstance().update(this.almacenDonManolo);
 	}
 	
 	@Test
 	public void testActualizarPOIConError() {
-		boolean poiUpdated = POIRepository.getInstance().update(this.poiConflictivoQueVaAHacerFallarLosTests);
-		
-		Assert.assertFalse(poiUpdated);
+		POIRepository.getInstance().update(this.poiConflictivoQueVaAHacerFallarLosTests);
 	}
 	
 	@Test
 	public void testEliminarPOIOk() {
-		boolean poiDeleted = POIRepository.getInstance().delete(this.almacenDonManolo);
-		
-		Assert.assertTrue(poiDeleted);
+		POIRepository.getInstance().delete(this.almacenDonManolo);
 		Assert.assertEquals(1, POIRepository.getInstance().findAll().size());
 	}
 	
 	@Test
 	public void testEliminarPOIConError() {
-		boolean poiDeleted = POIRepository.getInstance().delete(this.poiConflictivoQueVaAHacerFallarLosTests);
-		
-		Assert.assertFalse(poiDeleted);
+		POIRepository.getInstance().delete(this.poiConflictivoQueVaAHacerFallarLosTests);
 		Assert.assertEquals(2, POIRepository.getInstance().findAll().size());
 	}
 	
@@ -88,8 +80,8 @@ public class TestPOIRepository extends Inicializar {
 	
 	@Test
 	public void testBuscarPOIConTextoConResultados() {
-		List<POI> poisForSearch = POIRepository.getInstance().search("114");
-		List<POI> poisForSearch2 = POIRepository.getInstance().search("Fiambres");
+		List<POI> poisForSearch = POIRepository.getInstance().searchPOIs("114");
+		List<POI> poisForSearch2 = POIRepository.getInstance().searchPOIs("Fiambres");
 		
 		Assert.assertEquals(1, poisForSearch.size());
 		Assert.assertEquals(1, poisForSearch2.size());
@@ -97,14 +89,14 @@ public class TestPOIRepository extends Inicializar {
 	
 	@Test
 	public void testBuscarPOIConTextoSinResultados() {
-		List<POI> poisForSearch = POIRepository.getInstance().search("Banco");
+		List<POI> poisForSearch = POIRepository.getInstance().searchPOIs("Banco");
 
 		Assert.assertEquals(0, poisForSearch.size());
 	}
 
 	@Test
 	public void testBuscaPOIConEtiquetas(){
-		List<POI> listPOIResult = POIRepository.getInstance().search("Despensa");
+		List<POI> listPOIResult = POIRepository.getInstance().searchPOIs("Despensa");
 		Assert.assertEquals(1, listPOIResult.size());
 		Assert.assertEquals("Almacén Don Manolo", listPOIResult.get(0).getNombrePOI());
 

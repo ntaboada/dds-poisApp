@@ -18,7 +18,7 @@ public class Search implements TerminalAction<List<POI>>, Observable {
 	private int resultsSize;
 	private String date;
 	private int idTerminal;
-	private int idUsuario;
+	private Long idUsuario;
 
 	public String getQuery() {
 		return query;
@@ -60,11 +60,11 @@ public class Search implements TerminalAction<List<POI>>, Observable {
 		this.idTerminal = idTerminal;
 	}
 
-	public int getIdUsuario() {
+	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
