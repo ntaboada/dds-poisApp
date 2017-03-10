@@ -2,14 +2,14 @@ package dds.poi.dto.model;
 
 public class ReviewForPOIByNameRequestDTO {
 	
-	private Long idUser;
+	private int idUser;
 	private String poiName;
 	private String comment;
 	private int puntaje;
-	public Long getIdUser() {
+	public int getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(Long userId) {
+	public void setIdUser(int userId) {
 		this.idUser = userId;
 	}
 	public String getPoiName() {

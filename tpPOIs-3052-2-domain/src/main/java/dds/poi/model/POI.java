@@ -5,18 +5,21 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Converter;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Cascade;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
@@ -49,13 +52,13 @@ public class POI {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private CategoriaPOI categoria;
+	
+	@ElementCollection
+	@CollectionTable(name="Etiquetas", joinColumns=@JoinColumn(name="identificador"))
+    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
+	private List<String> etiquetas = new ArrayList<String>();
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@Fetch(FetchMode.SELECT)
-	private List<Etiqueta> etiquetas = new ArrayList<Etiqueta>();
-
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@Fetch(FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Review> reviewsList = new ArrayList<>();
 
 	public int calificacionGeneralReviews() {
@@ -87,7 +90,7 @@ public class POI {
 	}
 
 	private boolean coincidenEtiquetas(String busqueda) {
-		Predicate<Etiqueta> predicate = etiqueta -> etiqueta.getEtiqueta()
+		Predicate<String> predicate = etiqueta -> etiqueta
 				.equalsIgnoreCase(busqueda);
 		return this.etiquetas.stream().anyMatch(predicate);
 	}
@@ -150,11 +153,11 @@ public class POI {
 		this.direccionSecundaria = direccionSecundaria;
 	}
 
-	public List<Etiqueta> getEtiquetas() {
+	public List<String> getEtiquetas() {
 		return etiquetas;
 	}
 
-	public void setEtiquetas(List<Etiqueta> etiquetas) {
+	public void setEtiquetas(List<String> etiquetas) {
 		this.etiquetas = etiquetas;
 	}
 
@@ -166,9 +169,7 @@ public class POI {
 		this.reviewsList = reviewsList;
 	}
 
-	public void addEtiqueta(String etiquetaText) {
-		Etiqueta etiqueta = new Etiqueta();
-		etiqueta.setEtiqueta(etiquetaText);
+	public void addEtiqueta(String etiqueta) {
 		this.etiquetas.add(etiqueta);
 	}
 
@@ -178,12 +179,6 @@ public class POI {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public void addAllEtiquetas(List<String> etiquetasAUpdatear) {
-		for(String etiqueta : etiquetasAUpdatear) {
-			this.addEtiqueta(etiqueta);
-		}
 	}
 
 }

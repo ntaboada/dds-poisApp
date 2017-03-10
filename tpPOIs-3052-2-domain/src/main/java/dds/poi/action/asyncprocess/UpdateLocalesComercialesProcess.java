@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import dds.poi.manager.POIManager;
-import dds.poi.model.Etiqueta;
 import dds.poi.model.POI;
 import dds.poi.model.UpdateLocalComercial;
 import dds.poi.model.search.user.User;
@@ -26,8 +25,8 @@ public class UpdateLocalesComercialesProcess extends AsyncProcess {
 		POI poiBuscado = poiManager.buscarPOIs(localComercialToUpdate.getNombreFantasia()).get(0);
 
 		if (poiBuscado!=null){
-			poiBuscado.addAllEtiquetas(localComercialToUpdate.getEtiquetasAUpdatear());
-			List<Etiqueta> etiquetasNoRepetidas = poiBuscado.getEtiquetas().stream().distinct().collect(Collectors.toList());
+			poiBuscado.getEtiquetas().addAll(localComercialToUpdate.getEtiquetasAUpdatear());
+			List<String> etiquetasNoRepetidas = poiBuscado.getEtiquetas().stream().distinct().collect(Collectors.toList());
 			poiBuscado.setEtiquetas(etiquetasNoRepetidas);
 			POIRepository.getInstance().update(poiBuscado);
 		}

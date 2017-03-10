@@ -3,7 +3,7 @@ package dds.poi.dto.model;
 public class POIByNameRequestDTO {
 
 	private String poiName;
-	private Long idLoggedUser;
+	private int idLoggedUser;
 	
 	public String getPoiName() {
 		return poiName;
@@ -11,10 +11,10 @@ public class POIByNameRequestDTO {
 	public void setPoiName(String poiName) {
 		this.poiName = poiName;
 	}
-	public Long getIdLoggedUser() {
+	public int getIdLoggedUser() {
 		return idLoggedUser;
 	}
-	public void setIdLoggedUser(Long idLoggedUser) {
+	public void setIdLoggedUser(int idLoggedUser) {
 		this.idLoggedUser = idLoggedUser;
 	}
 	

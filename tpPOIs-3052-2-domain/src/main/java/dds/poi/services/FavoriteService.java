@@ -1,23 +1,19 @@
 package dds.poi.services;
 
-import dds.poi.provider.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import dds.poi.model.search.user.User;
+import dds.poi.provider.repository.UserRepository;
 
 @Service
 public class FavoriteService {
 
-    public void removeFavoritePOI(long idPOI, long idUser){
-        User user = UserRepository.getInstance().searchById(idUser);
-        user.removeFavoritePOI(idPOI);
-        UserRepository.getInstance().update(user);
+    public void removeFavoritePOI(int idPOI, int idUser){
+        UserRepository.getInstance().searchById(idUser).removeFavoritePOI((long)idPOI);
     }
 
-    public void saveFavoritePOI(long idPOI, long idUser){
-        User user = UserRepository.getInstance().searchById(idUser);
-        user.addFavoritePOI(idPOI);
-        UserRepository.getInstance().update(user);
+    public void saveFavoritePOI(int idPOI, int idUser){
+    	UserRepository.getInstance().searchById(idUser).addFavoritePOI((long)idPOI);
     }
 
     public boolean isFavoritePOI(User user, Long id){

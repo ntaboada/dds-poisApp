@@ -48,7 +48,7 @@ public class POIManager {
 
 
 
-	public POI searchById(long idPOI) {
+	public POI searchById(int idPOI) {
 		return POIRepository.getInstance().searchById(idPOI);
 	}
 

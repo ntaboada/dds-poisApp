@@ -23,8 +23,6 @@ public class Review {
 	
 	@ManyToOne
     private User user;
-	
-	public Review(){}
 
     public Review(String comment, int puntaje, User user) {
         this.comment = comment;

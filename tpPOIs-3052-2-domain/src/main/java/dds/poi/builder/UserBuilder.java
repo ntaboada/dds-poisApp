@@ -43,7 +43,7 @@ public class UserBuilder implements IBuilder<User> {
 
 	@Override
 	public boolean isValidBuild() {
-		return this.user.getEmail()!=null && this.user.getPassword()!=null && this.user.getProfileType()!=null;
+		return this.user.getEmail()!=null && this.user.getPassword()!=null && this.user.getIdUsuario()>0 && this.user.getProfileType()!=null;
 	}
 	
 }

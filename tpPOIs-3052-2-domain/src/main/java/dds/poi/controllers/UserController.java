@@ -1,6 +1,5 @@
 package dds.poi.controllers;
 
-import dds.poi.model.Consulta;
 import dds.poi.services.FavoriteService;
 import dds.poi.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Created by Nicolas on 25/09/2016.
+ */
+
 @RestController
 @RequestMapping(value="/api")
 public class UserController {
@@ -20,13 +23,13 @@ public class UserController {
     FavoriteService favoriteService;
 
     @RequestMapping(value="/favoritePOI", method = RequestMethod.DELETE)
-    public ResponseEntity<?> removeFavoritePOI(@RequestParam long idPoi, @RequestParam long idLoggedUser){
+    public ResponseEntity<?> removeFavoritePOI(@RequestParam int idPoi, @RequestParam int idLoggedUser){
         favoriteService.removeFavoritePOI(idPoi, idLoggedUser);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value="/favoritePOI", method = RequestMethod.POST)
-    public ResponseEntity<?> saveFavoritePOI(@RequestParam long idPoi, @RequestParam long idLoggedUser){
+    public ResponseEntity<?> saveFavoritePOI(@RequestParam int idPoi, @RequestParam int idLoggedUser){
         favoriteService.saveFavoritePOI(idPoi, idLoggedUser);
         return new ResponseEntity<>(HttpStatus.OK);
     }

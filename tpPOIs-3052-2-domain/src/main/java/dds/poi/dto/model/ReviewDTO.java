@@ -4,15 +4,15 @@ package dds.poi.dto.model;
  * Created by Nicolas on 25/09/2016.
  */
 public class ReviewDTO {
-    private Long idUser;
+    private int idUser;
     private String comment;
     private int puntaje;
 
-    public Long getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Long idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

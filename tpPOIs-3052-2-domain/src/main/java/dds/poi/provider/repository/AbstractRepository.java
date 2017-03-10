@@ -12,7 +12,6 @@ import dds.poi.model.Banco;
 import dds.poi.model.CGP;
 import dds.poi.model.CategoriaConServicios;
 import dds.poi.model.CategoriaPOI;
-import dds.poi.model.Etiqueta;
 import dds.poi.model.LocalComercial;
 import dds.poi.model.POI;
 import dds.poi.model.ParadaColectivo;
@@ -43,7 +42,6 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 			.addAnnotatedClass(CGP.class)
 			.addAnnotatedClass(LocalComercial.class)
 			.addAnnotatedClass(ParadaColectivo.class)
-			.addAnnotatedClass(Etiqueta.class)
 			.addAnnotatedClass(POI.class)
 			.buildSessionFactory();
 
@@ -83,18 +81,8 @@ public abstract class AbstractRepository<T> implements Repository<T> {
 	}
 
 	@Override
-	public void update(T t) {
-		Session session = sessionFactory.openSession();
-		try {
-			session.beginTransaction();
-			session.update(t);
-			session.getTransaction().commit();
-		} catch (HibernateException e) {
-			session.getTransaction().rollback();
-			throw new RuntimeException(e);
-		} finally {
-			session.close();
-		}
+	public void update(T obj) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override

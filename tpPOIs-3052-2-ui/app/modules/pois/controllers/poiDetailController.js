@@ -12,7 +12,7 @@ function POIDetailController(userId, poi, poiName, $state, POIService) {
   self.userQualification = "4";
   self.poi = poi;
   self.poiName = poiName;
-  if(self.poi == "0" || self.poi == "") {
+  if(self.poi == "0") {
     poiByName = true;
 
     POIService.getPoiDetailFromPOIName(

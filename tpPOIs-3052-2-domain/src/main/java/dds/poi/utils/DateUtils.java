@@ -6,9 +6,6 @@ import org.joda.time.format.DateTimeFormatter;
 
 import dds.poi.model.Rango;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class DateUtils {
 
 	public static boolean momentIsInInterval(DateTime moment, Rango interval) {
@@ -32,11 +29,6 @@ public class DateUtils {
 	public static String dateTimeToString(DateTime date) {
 		DateTimeFormatter dateTimeFormat = DateTimeFormat.forPattern("YYYY/MM/dd");
 		return dateTimeFormat.print(date);
-	}
-
-	public static String dateToString(Date date) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
-		return dateFormat.format(date);
 	}
 
 }

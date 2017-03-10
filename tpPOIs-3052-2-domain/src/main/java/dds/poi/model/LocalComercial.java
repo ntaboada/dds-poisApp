@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.joda.time.DateTime;
 import org.uqbar.geodds.Point;
 
@@ -21,8 +19,7 @@ public class LocalComercial extends CategoriaPOI {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Rubro rubro;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@Fetch(FetchMode.SELECT)
+	@OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Rango> rangosDeDisponibilidad;
 
 	public LocalComercial() {

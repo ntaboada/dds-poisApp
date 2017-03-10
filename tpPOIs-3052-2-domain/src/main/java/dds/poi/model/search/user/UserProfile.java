@@ -6,15 +6,11 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class UserProfile {
@@ -23,13 +19,12 @@ public class UserProfile {
 	@GeneratedValue
 	private Long id;
 
-	@ElementCollection(fetch=FetchType.EAGER)
-	@Fetch(FetchMode.SELECT)
+	@JsonIgnore
+	@ElementCollection
 	@CollectionTable(name="UserActions", joinColumns=@JoinColumn(name="id"))
-	@JoinTable(name="UserActions", joinColumns=@JoinColumn(name="id"))
-    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
 	private List<String> actions = new ArrayList<String>();
 
+	@JsonIgnore
 	public List<String> getActions() {
 		return actions;
 	}

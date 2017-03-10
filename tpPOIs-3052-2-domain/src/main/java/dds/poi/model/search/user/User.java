@@ -8,16 +8,10 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -43,11 +37,8 @@ public class User {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private UserProfile profileType;
 
-	@Fetch(FetchMode.SELECT)
-	@ElementCollection(fetch=FetchType.EAGER)
+	@ElementCollection
 	@CollectionTable(name="UserFavoritePOIs", joinColumns=@JoinColumn(name="idUsuario"))
-	@JoinTable(name="UserFavoritePOIs", joinColumns=@JoinColumn(name="idUsuario"))
-    @Cascade(value=org.hibernate.annotations.CascadeType.ALL)
 	private List<Long> favoritesPOIs = new ArrayList<>();
 
 	public List<Long> getFavoritesPOIs() {

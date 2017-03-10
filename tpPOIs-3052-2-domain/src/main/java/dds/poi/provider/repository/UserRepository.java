@@ -3,7 +3,6 @@ package dds.poi.provider.repository;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import dds.poi.model.search.user.User;
@@ -22,11 +21,10 @@ public class UserRepository extends AbstractRepository<User>{
 	public boolean correctCredentials(String username, String password) {
 		Session session = this.openSession();
 		try {
-			User user = (User) session.createCriteria(User.class)
-				.add(Restrictions.like("userName", username, MatchMode.EXACT))
-				.add(Restrictions.like("password", password, MatchMode.EXACT))
-				.uniqueResult();
- 			return user != null;
+			return (User) session.createCriteria(User.class)
+				.add(Restrictions.eq("userName", username))
+				.add(Restrictions.eq("password", password))
+				.uniqueResult() != null;
 		} catch (HibernateException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -38,8 +36,8 @@ public class UserRepository extends AbstractRepository<User>{
 		Session session = this.openSession();
 		try {
 			return ((User) session.createCriteria(User.class)
-				.add(Restrictions.like("userName", username))
-				.add(Restrictions.like("password", password))
+				.add(Restrictions.eq("userName", username))
+				.add(Restrictions.eq("password", password))
 				.uniqueResult()).getIdUsuario();
 		} catch (HibernateException e) {
 			throw new RuntimeException(e);
@@ -63,6 +61,6 @@ public class UserRepository extends AbstractRepository<User>{
 
 	@Override
 	public void addIdWhereClause(Criteria criteria, Object id) {
-		criteria.add(Restrictions.eq("idUsuario", id));
+		criteria.add(Restrictions.eq("idUsuario", (long)id));
 	}
 }

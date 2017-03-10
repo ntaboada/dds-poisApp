@@ -44,23 +44,31 @@ public class TestPOIRepository extends Inicializar {
 	public void testActualizarPOIOk() {
 		this.almacenDonManolo.setDireccionPrincipal("Cambio la direccion del Almacen Don Manolo");
 		
-		POIRepository.getInstance().update(this.almacenDonManolo);
+		boolean poiUpdated = POIRepository.getInstance().update(this.almacenDonManolo);
+		
+		Assert.assertTrue(poiUpdated);
 	}
 	
 	@Test
 	public void testActualizarPOIConError() {
-		POIRepository.getInstance().update(this.poiConflictivoQueVaAHacerFallarLosTests);
+		boolean poiUpdated = POIRepository.getInstance().update(this.poiConflictivoQueVaAHacerFallarLosTests);
+		
+		Assert.assertFalse(poiUpdated);
 	}
 	
 	@Test
 	public void testEliminarPOIOk() {
-		POIRepository.getInstance().delete(this.almacenDonManolo);
+		boolean poiDeleted = POIRepository.getInstance().delete(this.almacenDonManolo);
+		
+		Assert.assertTrue(poiDeleted);
 		Assert.assertEquals(1, POIRepository.getInstance().findAll().size());
 	}
 	
 	@Test
 	public void testEliminarPOIConError() {
-		POIRepository.getInstance().delete(this.poiConflictivoQueVaAHacerFallarLosTests);
+		boolean poiDeleted = POIRepository.getInstance().delete(this.poiConflictivoQueVaAHacerFallarLosTests);
+		
+		Assert.assertFalse(poiDeleted);
 		Assert.assertEquals(2, POIRepository.getInstance().findAll().size());
 	}
 	
@@ -80,8 +88,8 @@ public class TestPOIRepository extends Inicializar {
 	
 	@Test
 	public void testBuscarPOIConTextoConResultados() {
-		List<POI> poisForSearch = POIRepository.getInstance().searchPOIs("114");
-		List<POI> poisForSearch2 = POIRepository.getInstance().searchPOIs("Fiambres");
+		List<POI> poisForSearch = POIRepository.getInstance().search("114");
+		List<POI> poisForSearch2 = POIRepository.getInstance().search("Fiambres");
 		
 		Assert.assertEquals(1, poisForSearch.size());
 		Assert.assertEquals(1, poisForSearch2.size());
@@ -89,14 +97,14 @@ public class TestPOIRepository extends Inicializar {
 	
 	@Test
 	public void testBuscarPOIConTextoSinResultados() {
-		List<POI> poisForSearch = POIRepository.getInstance().searchPOIs("Banco");
+		List<POI> poisForSearch = POIRepository.getInstance().search("Banco");
 
 		Assert.assertEquals(0, poisForSearch.size());
 	}
 
 	@Test
 	public void testBuscaPOIConEtiquetas(){
-		List<POI> listPOIResult = POIRepository.getInstance().searchPOIs("Despensa");
+		List<POI> listPOIResult = POIRepository.getInstance().search("Despensa");
 		Assert.assertEquals(1, listPOIResult.size());
 		Assert.assertEquals("Almacén Don Manolo", listPOIResult.get(0).getNombrePOI());
 

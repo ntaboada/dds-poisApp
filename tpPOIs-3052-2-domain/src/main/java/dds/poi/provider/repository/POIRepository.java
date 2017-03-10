@@ -3,9 +3,6 @@ package dds.poi.provider.repository;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import dds.poi.model.POI;
@@ -35,22 +32,23 @@ public class POIRepository extends AbstractRepository<POI> implements
 
 	@Override
 	public void addIdWhereClause(Criteria criteria, Object id) {
-		criteria.add(Restrictions.eq("identificador",
-				Long.valueOf(String.valueOf(id))));
+		criteria.add(Restrictions.eq("identificador", (long) id));
 	}
 
 	@Override
 	public List<POI> searchPOIs(String valor) {
-		Session session = this.openSession();
-		try {
-			return session
-					.createCriteria(POI.class)
-					.add(Restrictions.like("nombrePOI", valor, MatchMode.ANYWHERE)).list();
-		} catch (HibernateException e) {
-			throw new RuntimeException(e);
-		} finally {
-			session.close();
-		}
+		return null;
+//		Session session = this.openSession();
+//		try {
+//			return session.createCriteria(User.class)
+//					.setFetchMode("candidatos", FetchMode.JOIN)
+//					.add(Restrictions.eq("username", username))
+//					.add(Restrictions.eq("password", password)).uniqueResult();
+//		} catch (HibernateException e) {
+//			throw new RuntimeException(e);
+//		} finally {
+//			session.close();
+//		}
 	}
 
 }
